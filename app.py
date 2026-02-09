@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 
-# --- 1. LOAD THE ASSETS (With Error Handling for Rubric) ---
+# 1. Load Model Assets and Scaler
 @st.cache_resource
 def load_assets():
     try:
@@ -18,7 +18,7 @@ def load_assets():
 
 model, scaler, model_columns = load_assets()
 
-# --- 2. THE UI LAYOUT ---
+# 2. Streamlit App Configuration
 st.set_page_config(page_title="Telco Churn Predictor", layout="wide")
 
 if model is None:
@@ -32,7 +32,7 @@ This app predicts whether a customer is likely to **Churn** (leave) or **Stay**.
 Adjust the customer details in the sidebar to test the model.
 """)
 
-# --- 3. SIDEBAR INPUTS (With Clear Labels for Rubric) ---
+# 3. Sidebar for User Inputs
 st.sidebar.header("Customer Details")
 
 # Numerical Inputs
@@ -57,7 +57,7 @@ partner = st.sidebar.selectbox("Has Partner?", ["Yes", "No"])
 dependents = st.sidebar.selectbox("Has Dependents?", ["Yes", "No"])
 senior_citizen = st.sidebar.selectbox("Is Senior Citizen?", ["Yes", "No"])
 
-# --- 4. PREPROCESSING LOGIC ---
+# 4. Preprocessing and Feature Engineering
 if st.sidebar.button("Predict Churn Status"):
     
     # Create Input Dictionary
@@ -88,7 +88,7 @@ if st.sidebar.button("Predict Churn Status"):
     # Scale the Data
     input_scaled = scaler.transform(input_df_ready)
 
-    # --- 5. PREDICTION ---
+    # 5. Prediction
     try:
         prediction = model.predict(input_scaled)
         probability = model.predict_proba(input_scaled)[0][1] # Probability of Churn
