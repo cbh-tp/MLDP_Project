@@ -18,3 +18,21 @@ This project builds a **Hybrid Machine Learning Solution** to identify at-risk c
 * **Streamlit:** Web Application Framework
 * **Pandas & NumPy:** Data Manipulation
 * **Matplotlib/Seaborn:** Exploratory Data Analysis
+
+## Dataset
+* **The dataset used is the Telco Customer Churn Dataset from Kaggle.**
+* **Rows: 7,043**
+* **Features: 21 (Demographics, Services, Account Information)**
+* **Target: Churn (Yes/No)**
+* **Challenges: Imbalanced Classes (73% No / 26% Yes)**
+
+## How to run locally
+* **Clone the repository**
+* **Install Requirements (pip install streamlit scikit-learn pandas numpy matplotlib)**
+* **Run the App**
+* **View in local browser (http://localhost:8501)**
+
+## Model Performance
+* **Accuracy: ~81%**
+* **Recall (Churners): ~70% (Primary Success Metric)**
+* **Precision: ~63% (Balanced to avoid excessive false alarms)**
